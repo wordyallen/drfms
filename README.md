@@ -13,7 +13,7 @@ This app demo is meant to get you started prototyping your own data driven apps.
 1. In your docker environment run:
     > $ docker-compose build
 
-    *Please be patient. Numpy is a huge package. If you want a faster numpy installation, click* [here][np-link]
+    *Please be patient. Numpy is a huge package. If you want a faster numpy installation, click* [here][np-link].
 
     >$ docker-compose up -d
 
