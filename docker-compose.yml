@@ -1,10 +1,10 @@
 web:
   build: .
-  command: python -u server.py
+  command: gunicorn --bind 0.0.0.0:8000 wsgi
   ports:
     - "5000:5000"
   volumes:
-    - /drfms
+    - /usr/src/drfms/public
   links:
     - db
 db:
