@@ -1,11 +1,12 @@
 web:
   build: .
-  command: gunicorn --bind 0.0.0.0:8000 wsgi
+
   ports:
     - "5000:5000"
   volumes:
     - /usr/src/drfms/public
   links:
     - db
+  command: /usr/local/bin/gunicorn --bind 0.0.0.0:8000 wsgi
 db:
   image: mongo:latest
