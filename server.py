@@ -69,6 +69,7 @@ def login():
             flash("Logged in successfully!", category='success')
             return redirect(request.args.get("next") or url_for("demo"))
         flash("Wrong username or password!", category='error')
+    flash("username : demo       password: demo", category='info')
     return render_template('login.html', title='login', form=form)
 
 
@@ -120,4 +121,4 @@ def load_user(username):
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    application.run()

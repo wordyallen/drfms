@@ -1,5 +1,5 @@
 # drfms
-![alt text](http://i.imgur.com/zJklqzQ.png "banner")
+![alt text](http://i.imgur.com/AaF9Odh.png "banner")
 
 
 This app demo is meant to get you started prototyping your own data driven apps. The demo included is a basic sms/signals app. However, you could use this stack to model any system. I put this together because I needed a boilerplate that could:
@@ -8,22 +8,27 @@ This app demo is meant to get you started prototyping your own data driven apps.
  - Render Data Visualizations in a composable way
 
 
-## Install as docker containers
 
-1. In your docker environment run:
-    > $ docker-compose build
+### Prerequisites:
+- mongoDB
+- python-pip
+- libffi-dev
+- python-dev
+- virtualenv (Optional, but recommended.)
+
+## Installation
+1. Inside the virtual environment, run:
+    > $ pip install -r requirements.txt
 
     *Please be patient. Numpy is a huge package. If you want a faster numpy installation, click* [here][np-link].
 
-    >$ docker-compose up -d
-
 2. Create a user in the db:
-  > $ docker-compose run web /usr/local/bin/python user_create.py
+  > python user_create.py
 
-3. Browse to your docker-machine ip at port 5000.
+3. To run the app:
 
-4. If you need to reload the server, run:
->$ docker restart **drfms_web_1**  
+  > python server.py
+
 
 
 ## Author
