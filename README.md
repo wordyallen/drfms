@@ -1,5 +1,5 @@
 # drfms
-![alt text](http://i.imgur.com/AaF9Odh.png "banner")
+![alt text](https://i.imgur.com/qWRcBih.png "banner")
 
 
 This app demo is meant to get you started prototyping your own data driven apps. The demo included is a basic sms/signals app. However, you could use this stack to model any system. I put this together because I needed a boilerplate that could:
