@@ -7,12 +7,12 @@ from wtforms.validators import DataRequired
 from flask.ext.bcrypt import Bcrypt
 from dataModules.comSystem import comSystem
 
-application = Flask(__name__, static_url_path='', static_folder='public', template_folder='public')
-bcrypt = Bcrypt(application)
+app = Flask(__name__, static_url_path='', static_folder='public', template_folder='public')
+bcrypt = Bcrypt(app)
 
-application.config.from_object('config')
+app.config.from_object('config')
 login_manager = LoginManager()
-login_manager.init_app(application)
+login_manager.init_app(app)
 
 
 login_manager.login_view = 'login'
@@ -53,16 +53,16 @@ class LoginForm(Form):
 #-------------views------------------#
 
 
-@application.route('/')
+@app.route('/')
 def home():
     return render_template('home.html')
 
 
-@application.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        user = application.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
+        user = app.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
         if user and User.validate_login(user['password'], form.password.data):
             user_obj = User(user['_id'])
             login_user(user_obj)
@@ -73,14 +73,14 @@ def login():
     return render_template('login.html', title='login', form=form)
 
 
-@application.route('/logout')
+@app.route('/logout')
 def logout():
     logout_user()
     flash("You are logged out", category='info')
     return redirect(url_for('home'))
 
 
-@application.route('/demo', methods=['GET', 'POST'])
+@app.route('/demo', methods=['GET', 'POST'])
 @login_required
 def demo():
     return render_template('demo.html')
@@ -90,7 +90,7 @@ def demo():
 
 
 
-@application.route('/api/data', methods=['GET', 'POST'])
+@app.route('/api/data', methods=['GET', 'POST'])
 def data_handler():
 
     with open('data.json', 'r') as file:
@@ -107,13 +107,13 @@ def data_handler():
         with open('data.json', 'w') as file:
             file.write(json.dumps(data, indent=4, separators=(',', ': ')))
 
-    return Response(json.dumps(data), mimetype='application/json', headers={'Cache-Control': 'no-cache'})
+    return Response(json.dumps(data), mimetype='app/json', headers={'Cache-Control': 'no-cache'})
 
 
 
 @login_manager.user_loader
 def load_user(username):
-    u = application.config['USERS_COLLECTION'].find_one({"_id": username})
+    u = app.config['USERS_COLLECTION'].find_one({"_id": username})
     if not u:
         return None
     return User(u['_id'])
