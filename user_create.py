@@ -5,7 +5,13 @@ from server import bcrypt
 
 def main():
     # Connect to the DB
-    collection = MongoClient()["demo"]["users"]
+
+
+    connection = MongoClient("ds151028.mlab.com", 51028)
+    db = connection["drfms"]
+    db.authenticate("wordyallen", "hegemony1")
+    collection = db['users']
+
 
     # Ask for data to store
     user = raw_input("Enter your username: ")
@@ -18,6 +24,8 @@ def main():
         print "User created."
     except DuplicateKeyError:
         print "User already present in DB."
+
+
 
 
 if __name__ == '__main__':
