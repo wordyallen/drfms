@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
-from server import bcrypt
+from application import bcrypt
 
 
 def main():
