@@ -5,9 +5,7 @@ WTF_CSRF_ENABLED = True
 SECRET_KEY = 'Put your secret key here'
 DB_NAME = 'demo'
 
-
-DATABASE = MongoClient("ds151028.mlab.com", 51028)["drfms"]
-DATABASE.authenticate("wordyallen", "hegemony1")
+DATABASE = MongoClient(os.getenv('DB_URL'), 27017)["drfms"]
 USERS_COLLECTION = DATABASE.users
 
 

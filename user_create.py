@@ -1,17 +1,14 @@
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
-from application import bcrypt
+from app import bcrypt
+import os
 
 
 def main():
     # Connect to the DB
-
-
-    connection = MongoClient("ds151028.mlab.com", 51028)
+    connection = MongoClient(os.getenv("DB_URL"), 27017)
     db = connection["drfms"]
-    db.authenticate("wordyallen", "hegemony1")
     collection = db['users']
-
 
     # Ask for data to store
     user = raw_input("Enter your username: ")
@@ -24,8 +21,6 @@ def main():
         print "User created."
     except DuplicateKeyError:
         print "User already present in DB."
-
-
 
 
 if __name__ == '__main__':
